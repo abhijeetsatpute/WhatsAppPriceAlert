@@ -25,6 +25,6 @@ if(price_curr < int(price_set)):
     client = Client(account_sid, auth_token)
     message = client.messages.create(
                               from_='whatsapp:+14155238886',
-                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Drop Alert for *'+product+'\n* \nCurrent Price: *'+price+'*'+'\nBuy it ASAP !!\n\n'+url,
+                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Drop Alert for *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nBuy it ASAP !!\n\n'+url,
                               to='whatsapp:+91' + mobile_num
                           )
