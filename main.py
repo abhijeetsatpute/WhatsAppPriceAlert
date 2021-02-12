@@ -25,7 +25,7 @@ if __name__ == "__main__":
     client = Client(account_sid, auth_token)
     message = client.messages.create(
                               from_='whatsapp:+14155238886',
-                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'\n* \nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
+                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
                               to='whatsapp:+91' + mobile_num
                           )
     print('\nYour Price Alert Has Been Set.'+'\n'+message.sid)
