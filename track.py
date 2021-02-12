@@ -19,11 +19,11 @@ def check():
     product = soup.find(id='productTitle').text.strip()
     price_curr = int(float((price.split()[1]).replace(',','')))
     if (price_curr < price_set):
-        # twilio_info = pandas.read_csv('twilio_info.csv')
-        # account_sid = str(twilio_info.loc[0,'account_sid'])
-        # auth_token = str(twilio_info.loc[0,'auth_token'])
-        # client = Client(account_sid, auth_token)
-        # message = client.messages.create(from_='whatsapp:+14155238886',body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Drop Alert for *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nBuy it ASAP !!\n\n'+url,to='whatsapp:+91' + mobile_num)
+        twilio_info = pandas.read_csv('twilio_info.csv')
+        account_sid = str(twilio_info.loc[0,'account_sid'])
+        auth_token = str(twilio_info.loc[0,'auth_token'])
+        client = Client(account_sid, auth_token)
+        message = client.messages.create(from_='whatsapp:+14155238886',body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Drop Alert for *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nBuy it ASAP !!\n\n'+url,to='whatsapp:+91' + mobile_num)
         print("Price has been dropped to " + price)
         exit()
     else:
