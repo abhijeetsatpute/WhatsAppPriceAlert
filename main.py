@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 from twilio.rest import Client
 import write_csv
 import pandas
+import track
+import schedule
+import time
 
 if __name__ == "__main__":
     url = input("Enter the product Link: ")
@@ -23,9 +26,14 @@ if __name__ == "__main__":
     account_sid = str(twilio_info.loc[0,'account_sid'])
     auth_token = str(twilio_info.loc[0,'auth_token'])
     client = Client(account_sid, auth_token)
-    message = client.messages.create(
-                              from_='whatsapp:+14155238886',
-                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
-                              to='whatsapp:+91' + mobile_num
-                          )
-    print('\nYour Price Alert Has Been Set.'+'\n'+message.sid)
+    # message = client.messages.create(
+    #                           from_='whatsapp:+14155238886',
+    #                           body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
+    #                           to='whatsapp:+91' + mobile_num
+    #                       )
+    # print('\nYour Price Alert Has Been Set.'+'\n'+message.sid)
+
+    schedule.every(10).seconds.do(track.check)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

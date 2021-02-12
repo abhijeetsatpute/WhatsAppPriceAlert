@@ -10,6 +10,7 @@ pip install beautifulsoup4
 pip install requests
 pip install twilio
 pip install pandas
+pip install schedule
 ```
 
  Usage:
