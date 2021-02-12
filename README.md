@@ -14,3 +14,7 @@
 ```
   python main.py
 ```
+
+<b>
+Use a task scheduler to run the script at specific intervals to check for price drops.
+</b>
