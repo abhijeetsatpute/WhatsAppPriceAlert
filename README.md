@@ -3,18 +3,20 @@
 
 
  The following python dependences are required.
-
- 	pip install lxml
- 	pip install beautifulsoup4
- 	pip install requests
- 	pip install twilio
-
+```
+pip install lxml
+pip install beautifulsoup4
+pip install requests
+pip install twilio
+pip install pandas
+```
 
  Usage:
 ```
-  python main.py
+python main.py
 ```
+Saves the product details into a csv file.
 
 <b>
-Use a task scheduler to run the script at specific intervals to check for price drops.
+Use a task scheduler to run the track.py script at specific intervals to check for price drops.
 </b>
