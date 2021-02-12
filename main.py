@@ -2,8 +2,8 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 from twilio.rest import Client
-import twilio_info
 import write_csv
+import pandas
 
 if __name__ == "__main__":
     url = input("Enter the product Link: ")
@@ -18,6 +18,14 @@ if __name__ == "__main__":
     price = (soup.find(id='priceblock_ourprice').text)
     product = soup.find(id='productTitle').text.strip()
     price_curr = float((price.split()[1]).replace(',',''))
-    
-    message = twilio_info.send(product,price,mobile_num)
-    print('Your Price Alert Has Been Set.'+'\n'+message.sid)
+
+    twilio_info = pandas.read_csv('twilio_info.csv')
+    account_sid = str(twilio_info.loc[0,'account_sid'])
+    auth_token = str(twilio_info.loc[0,'auth_token'])
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+                              from_='whatsapp:+14155238886',
+                              body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'\n* \nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
+                              to='whatsapp:+91' + mobile_num
+                          )
+    print('\nYour Price Alert Has Been Set.'+'\n'+message.sid)
