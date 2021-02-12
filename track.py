@@ -2,6 +2,7 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 from twilio.rest import Client
+from termcolor import colored
 import write_csv
 import pandas
 
@@ -24,7 +25,8 @@ def check():
         auth_token = str(twilio_info.loc[0,'auth_token'])
         client = Client(account_sid, auth_token)
         message = client.messages.create(from_='whatsapp:+14155238886',body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Drop Alert for *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nBuy it ASAP !!\n\n'+url,to='whatsapp:+91' + mobile_num)
-        print("Price has been dropped to " + price)
+        print(colored("Price has been dropped to ","green") + price)
         exit()
     else:
         print("Price remains the same " + price)
+        print("\n Rechecking in an hour again.")

@@ -2,6 +2,7 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 from twilio.rest import Client
+from termcolor import colored
 import write_csv
 import pandas
 import track
@@ -9,9 +10,9 @@ import schedule
 import time
 
 if __name__ == "__main__":
-    url = input("Enter the product Link: ")
-    mobile_num = input("\nEnter your Phone number to recieve Alerts: +91-")
-    price_set = input("\nEnter the Target Price: ")
+    url = input(colored("Enter the product Link: ","blue"))
+    mobile_num = input(colored("\nEnter your Phone number to recieve Alerts: +91-","blue"))
+    price_set = input(colored("\nEnter the Target Price: ","red"))
 
     write_csv.save(url, mobile_num, price_set)
 
@@ -31,9 +32,10 @@ if __name__ == "__main__":
                               body='Hello! This is a WhatsAppPriceAlert. \n\nYour Price Alert Has Been Set.\n\nYour product *'+product+'* \n\nCurrent Price: *'+price+'*'+'\nTarget Price set: *'+price_set+'*',
                               to='whatsapp:+91' + mobile_num
                           )
-    print('\nYour Price Alert Has Been Set.'+'\n'+message.sid)
-
-    schedule.every(10).seconds.do(track.check)
+    print(colored('\nYour Price Alert Has Been Set.'+'\n',"green")+message.sid)
+    print(colored('\nChecking...','red'))
+    track.check()
+    schedule.every().hour.do(track.check)
     while True:
         schedule.run_pending()
         time.sleep(1)
