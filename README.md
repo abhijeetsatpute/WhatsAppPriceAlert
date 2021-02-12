@@ -5,12 +5,7 @@ Whatsapp Price Drop Alert on Amazon Products.
 <br/>
  The following python Dependencies are required.
 ```
-pip install lxml
-pip install beautifulsoup4
-pip install requests
-pip install twilio
-pip install pandas
-pip install schedule
+pip install lxml beautifulsoup4 requests twilio schedule termcolor
 ```
 
  Usage:
