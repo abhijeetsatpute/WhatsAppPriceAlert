@@ -1,7 +1,7 @@
 from twilio.rest import Client
 
 account_sid = 'AC37a52affa939075892dd7aa4bb523561'
-auth_token = '7eb64fe09b0afe4caa8b8fa101f1f7b0'
+auth_token = '{AuthToken}'
 client = Client(account_sid, auth_token)
 
 def send(product,price,mobile_num):
