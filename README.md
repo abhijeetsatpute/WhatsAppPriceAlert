@@ -25,7 +25,26 @@ Use a task scheduler to run the track.py script at specific intervals to check f
 
 <br><br>
 
-Use [hickory](https://github.com/maxhumber/hickory) to Schedule track.py to execute every 60 minutes
+Use [Schedule](https://pypi.org/project/schedule/) to Schedule track.check to execute every hour/seconds/minutes.
 ```
-hickory schedule track.py --every=60minutes
+import schedule
+import time
+
+def check():
+    Check for current price
+    if current price < price_set:
+      Send notification and exit()
+
+schedule.every(10).seconds.do(track.check)
+schedule.every(10).minutes.do(track.check)
+schedule.every().hour.do(track.check)
+schedule.every().day.at("10:30").do(track.check)
+schedule.every(5).to(10).minutes.do(track.check)
+schedule.every().monday.do(track.check)
+schedule.every().wednesday.at("13:15").do(track.check)
+schedule.every().minute.at(":17").do(track.check)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 ```
