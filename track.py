@@ -18,7 +18,7 @@ price = (soup.find(id='priceblock_ourprice').text)
 product = soup.find(id='productTitle').text.strip()
 price_curr = float((price.split()[1]).replace(',',''))
 
-if(price_curr < price_set):
+if(price_curr < int(price_set)):
     twilio_info = pandas.read_csv('twilio_info.csv')
     account_sid = str(twilio_info.loc[0,'account_sid'])
     auth_token = str(twilio_info.loc[0,'auth_token'])
